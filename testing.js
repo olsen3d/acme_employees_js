@@ -84,17 +84,29 @@ console.log(JSON.stringify(generateManagementTree(employees), null, 2));
 //   ];
 console.log('***************************')
 //given a tree of employees, generate a display which displays the hierarchy
+// const displayManagementTree = (tree) => {
+// let result = ''
+// for (key in tree) {
+//     let current = tree[key]
+//     if (key === 'name') result += current
+//     if (Array.isArray(current)) {
+//         console.log(current)
+//     }
+// }
+// return result
+// }
+
 const displayManagementTree = (tree) => {
-let result = ''
-for (key in tree) {
-    let current = tree[key]
-    if (key === 'name') result += current
-    if (Array.isArray(current)) {
-        console.log(current)
+    let result = ''
+Object.entries(tree).forEach(pair => {
+    if (pair[0] === 'name') console.log(pair[1])
+    if (Array.isArray(pair[1])) {
+        pair[1].forEach(item => displayManagementTree(item))
     }
+})
+    return result
 }
-return result
-}
+
 
 console.log(displayManagementTree(generateManagementTree(employees)))/*
 moe

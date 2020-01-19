@@ -170,7 +170,18 @@ console.log(JSON.stringify(generateManagementTree(employees), null, 2));
 spacer('');
 
 spacer('displayManagementTree')
+
 //given a tree of employees, generate a display which displays the hierarchy
+const displayManagementTree = (tree) => {
+    let result = ''
+Object.entries(tree).forEach(pair => {
+    if (pair[0] === 'name') console.log(pair[1])
+    if (Array.isArray(pair[1])) {
+        pair[1].forEach(item => displayManagementTree(item))
+    }
+})
+    return result
+}
 displayManagementTree(generateManagementTree(employees));/*
 moe
 -larry
