@@ -34,6 +34,8 @@ spacer('findEmployeeByName Moe')
 const findEmployeeByName = (name, employees) => {
     return employees.find(person => person.name === name)
 }
+//[pk] perfect
+
 console.log(findEmployeeByName('moe', employees));//{ id: 1, name: 'moe' }
 
 spacer('')
@@ -45,10 +47,12 @@ const findManagerFor = (employee, employees) => {
     const manager = employees.find(manager => manager.id === employee.managerId)
     if (manager === undefined) {
         return employee
+     //[pk] hm interesting choice of functionality
     } else {
         return manager
     }
 }
+//[pk] great!
 console.log(findManagerFor(findEmployeeByName('shep Jr.', employees), employees));//{ id: 4, name: 'shep', managerId: 2 }
 
 spacer('')
@@ -59,6 +63,7 @@ spacer('findCoworkersFor Larry')
 const findCoworkersFor = (employee, employees) => {
     return employees.filter(coworker => employee.managerId === coworker.managerId && employee.id !== coworker.id)
 }
+//[pk] perfect!
 console.log(findCoworkersFor(findEmployeeByName('larry', employees), employees));/*
 [ { id: 3, name: 'curly', managerId: 1 },
   { id: 99, name: 'lucy', managerId: 1 } ]
@@ -80,6 +85,7 @@ const findManagementChainForEmployee = (employee, employees) => {
     }
     return chain
 }
+//[pk] good!
 console.log(findManagementChainForEmployee(findEmployeeByName('moe', employees), employees));//[  ]
 
 spacer('');
@@ -112,6 +118,7 @@ const generateManagementTree = (employees) => {
     }
     return tree[0]
 }
+//[pk] ok but this relies heavily on the fact that the array is already sorted in a particular way. check out the solution for a more robust approach.
 console.log(JSON.stringify(generateManagementTree(employees), null, 2));
 /*
 {
@@ -182,6 +189,9 @@ Object.entries(tree).forEach(pair => {
 })
     return result
 }
+//[pk] not sure what you're doing here with Object.entries and pairs.. and you're def not getting the right result.
+//[pk] check the solution!
+
 displayManagementTree(generateManagementTree(employees));/*
 moe
 -larry
